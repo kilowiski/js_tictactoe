@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+      }
+      .gameBoard{
+        display: grid;
+        width: 100vmin;
+        height: 100vmin;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        background-color: grey;
+      }
+      .grid{
+        border: black 1vmin solid;
+      }
+    </style>
+    <body>
+  </head>
+
+  <div class="gameBoard">
+    <div class="grid" id="g1"></div>
+    <div class="grid" id="g2"></div>
+    <div class="grid" id="g3"></div>
+    <div class="grid" id="g4"></div>
+    <div class="grid" id="g5"></div>
+    <div class="grid" id="g6"></div>
+    <div class="grid" id="g7"></div>
+    <div class="grid" id="g8"></div>
+    <div class="grid" id="g9"></div>
+  </div>
+  <script src="/socket.io/socket.io.js">  </script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script>
+  window.onload = (event) => {
+    var socket=io();
+    g1.onclick=function(){
+      socket.emit('click',"g1")
+    }
+    g2.onclick=function(){
+      socket.emit('click',"g2")
+    }
+    g3.onclick=function(){
+      socket.emit('click',"g3")
+    }
+    g4.onclick=function(){
+      socket.emit('click',"g4")
+    }
+    g5.onclick=function(){
+      socket.emit('click',"g5")
+    }
+    g6.onclick=function(){
+      socket.emit('click',"g6")
+    }
+    g7.onclick=function(){
+      socket.emit('click',"g7")
+    }
+    g8.onclick=function(){
+      socket.emit('click',"g8")
+    }
+    g9.onclick=function(){
+      socket.emit('click',"g9")
+    }
+    //FLIP COLOR
+    socket.on('flip',(identifier,currPlayer)=>{
+      var elementById = document.getElementById(identifier)
+      if(currPlayer==="A"){
+        console.log("CHANGING COLOR TO RED")
+        elementById.setAttribute("style","background-color:red");
+      }
+      else if(currPlayer==="B"){
+        console.log("CHANGING COLOR TO BLUE")
+        elementById.setAttribute("style","background-color:blue");
+      }
+    })
+    //WIN & TIE
+    socket.on('win',(winner)=>{
+      if(winner==="A"){
+        alert("A WINS")
+      }
+      else if(winner==="B"){
+        alert("B WINS")
+      }
+      else{
+        alert("TIE")
+      }
+      resetBoard();
+    })
+
+    function resetBoard(){
+      g1.setAttribute("style","background-color:grey");
+      g2.setAttribute("style","background-color:grey");
+      g3.setAttribute("style","background-color:grey");
+      g4.setAttribute("style","background-color:grey");
+      g5.setAttribute("style","background-color:grey");
+      g6.setAttribute("style","background-color:grey");
+      g7.setAttribute("style","background-color:grey");
+      g8.setAttribute("style","background-color:grey");
+      g9.setAttribute("style","background-color:grey");
+    }
+    };
+  </script>
+  </body>
+</html>
