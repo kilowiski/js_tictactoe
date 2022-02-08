@@ -1,5 +1,8 @@
 # js_tictactoe
 simple 2 player tic tac toe built using node.js
+
+use npm start to run
+
 html frontend includes some js script.
 
 uses the following node.js packages
