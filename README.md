@@ -1,5 +1,5 @@
 # js_tictactoe
-simple 2 player tic tac toe built using node.js
+simple 2 player local tic tac toe built using node.js
 
 use npm start to run
 
