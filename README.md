@@ -12,4 +12,5 @@ uses the following node.js packages
 * http
 
 The game starts immediately, **RED** player goes first followed by **BLUE**
+
 The game auto resets once either player wins or tie condition is reached.
